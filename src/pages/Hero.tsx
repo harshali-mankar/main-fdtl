@@ -19,45 +19,21 @@ const Hero = () => {
     setExpandedIndex((prev) => (prev === index ? null : index));
   };
 
-  //   const handleOpenProject = (link: string) => {
-  //   const session_token = localStorage.getItem("session_token");
-  //   const tenantId = localStorage.getItem("tenantId");
-  //   if (!session_token) {
-  //     alert("Please login first!");
-  //     return;
-  //   }
-  //   const params = new URLSearchParams({
-  //     session_token,
-  //     tenantId: tenantId || "",
+    const handleOpenProject = (link: string) => {
+    const session_token = localStorage.getItem("session_token");
+    const tenantId = localStorage.getItem("tenantId");
+    if (!session_token) {
+      alert("Please login first!");
+      return;
+    }
+    const params = new URLSearchParams({
+      session_token,
+      tenantId: tenantId || "",
 
-  //   });
+    });
 
-  //   window.open(`${link}?${params.toString()}`, "_blank");
-  // };
-
- const handleOpenProject = (link: string) => {
-  const session_token = localStorage.getItem("session_token");
-  const tenantId = localStorage.getItem("tenantId");
-
-  if (!session_token || !tenantId) {
-    alert("Please login first!");
-    return;
-  }
-
-  // Save real token and tenantId in localStorage for the master app to pick up
-  localStorage.setItem("master_session_token", session_token);
-  localStorage.setItem("master_tenantId", tenantId);
-
-  // URL params: send only placeholders
-  const params = new URLSearchParams({
-    session_token: "MASKED_TOKEN",
-    tenantId: "MASKED_TENANT",
-  });
-
-  window.open(`${link}?${params.toString()}`, "_blank");
-};
-
-
+    window.open(`${link}?${params.toString()}`, "_blank");
+  };
 
 
 //   const handleOpenProject = (link: string) => {
