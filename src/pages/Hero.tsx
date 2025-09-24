@@ -19,59 +19,59 @@ const Hero = () => {
     setExpandedIndex((prev) => (prev === index ? null : index));
   };
 
-  //   const handleOpenProject = (link: string) => {
-  //   const session_token = localStorage.getItem("session_token");
-  //   const tenantId = localStorage.getItem("tenantId");
-  //   if (!session_token) {
-  //     alert("Please login first!");
-  //     return;
-  //   }
-  //   const params = new URLSearchParams({
-  //     session_token,
-  //     tenantId: tenantId || "",
-
-  //   });
-
-  //   window.open(`${link}?${params.toString()}`, "_blank");
-  // };
-
-
-  const handleOpenProject = (link: string) => {
-  const session_token = localStorage.getItem("session_token");
-  const tenantId = localStorage.getItem("tenantId");
-
-  if (!session_token) {
-    alert("Please login first!");
-    return;
-  }
-
-  // New window open karo
-  const child = window.open(link, "_blank");
-
-  if (!child) {
-    alert("Popup blocked or failed to open");
-    return;
-  }
-
-  // Polling to wait until child is ready
-  const interval = setInterval(() => {
-    try {
-      if (child && !child.closed) {
-        // Send message to child
-        child.postMessage(
-          { session_token, tenantId },
-          "http://localhost:5174" // exact child origin
-        );
-        clearInterval(interval);
-      } else {
-        clearInterval(interval);
-      }
-    } catch (err) {
-      // Cross-origin error until child fully loads
-      console.log("Waiting for child window to load...");
+    const handleOpenProject = (link: string) => {
+    const session_token = localStorage.getItem("session_token");
+    const tenantId = localStorage.getItem("tenantId");
+    if (!session_token) {
+      alert("Please login first!");
+      return;
     }
-  }, 200);
-};
+    const params = new URLSearchParams({
+      session_token,
+      tenantId: tenantId || "",
+
+    });
+
+    window.open(`${link}?${params.toString()}`, "_blank");
+  };
+
+
+//   const handleOpenProject = (link: string) => {
+//   const session_token = localStorage.getItem("session_token");
+//   const tenantId = localStorage.getItem("tenantId");
+
+//   if (!session_token) {
+//     alert("Please login first!");
+//     return;
+//   }
+
+//   // New window open karo
+//   const child = window.open(link, "_blank");
+
+//   if (!child) {
+//     alert("Popup blocked or failed to open");
+//     return;
+//   }
+
+//   // Polling to wait until child is ready
+//   const interval = setInterval(() => {
+//     try {
+//       if (child && !child.closed) {
+//         // Send message to child
+//         child.postMessage(
+//           { session_token, tenantId },
+//           "http://localhost:5174" // exact child origin
+//         );
+//         clearInterval(interval);
+//       } else {
+//         clearInterval(interval);
+//       }
+//     } catch (err) {
+//       // Cross-origin error until child fully loads
+//       console.log("Waiting for child window to load...");
+//     }
+//   }, 200);
+// };
 
 
   return (

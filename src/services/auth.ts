@@ -13,6 +13,7 @@ export const GetLoginCredentials = async (data: any) => {
           userId: data.userId,
           password: data.password,
         }),
+        // credentials: "include",
       }
     );
 
