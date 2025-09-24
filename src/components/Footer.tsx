@@ -15,8 +15,18 @@ const Footer: React.FC = () => {
         // width: "100%",
       }}
     >
-      <Typography variant="body2" color="textSecondary">
+      {/* <Typography variant="body2" color="textSecondary">
         © {new Date().getFullYear()} KraftNexus. All rights reserved.
+      </Typography> */}
+        <Typography variant="body2" color="textSecondary">
+        © {new Date().getFullYear()}{" "}
+        <Box component="span" sx={{ fontWeight: 700, color: "#1D3A6D" }}>
+          KRAFT
+        </Box>
+        <Box component="span" sx={{ fontWeight: 700, color: "#D4A33D" }}>
+          NEXUS
+        </Box>
+        . All rights reserved.
       </Typography>
     </Box>
   );

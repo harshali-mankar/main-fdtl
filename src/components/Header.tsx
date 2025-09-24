@@ -2,7 +2,8 @@ import { AppBar, Box, Toolbar, Typography, Avatar, Menu, MenuItem, CardMedia } f
 import { ExitToApp, KeyboardArrowDown } from '@mui/icons-material'
 import { useState, useEffect } from 'react'
 import LogoutButton from './LogoutButton'
-import kraft_nexus from "../assets/kraft_nexus.png"
+import kraft_nexus from "../assets/demo_small.png"
+
 
 const Header = () => {
   const [userName, setUserName] = useState('')
@@ -46,6 +47,20 @@ const Header = () => {
             alt="Kraft Nexus"
             sx={{ objectFit: 'contain', padding: '8px' }}
           />
+
+           <Typography
+    variant="h6"
+    sx={{
+      fontWeight: 700,
+      display: 'flex',
+      alignItems: 'center',
+      fontSize: '2rem', 
+      gap: 0.5,
+    }}
+  >
+    <Box component="span" sx={{ color: '#1D3A6D' }}>KRAFT</Box>
+    <Box component="span" sx={{ color: '#D4A33D' }}>NEXUS</Box>
+  </Typography>
         </Box>
 
         <Box

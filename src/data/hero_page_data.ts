@@ -1,10 +1,11 @@
 import vims from "../assets/vims.png"
 import flyx from "../assets/flyx.png"
 import aero_duty_pro from "../assets/aero_duty_pro.png"
+import masters from "../assets/masters.png"
 
 const heroPageData = [
   {
-    image: "",
+    image: masters,
     link: "http://localhost:5174/",
     name: "Master",
     desc: ""
