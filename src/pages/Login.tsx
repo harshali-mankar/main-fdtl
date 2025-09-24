@@ -26,13 +26,13 @@ const Login: React.FC = () => {
       }
       const response = await GetLoginCredentials(data)
       if (response.user) {
-        navigate("/");
-        setLoading(true);
+        
         // Store session in sessionStorage (expires in 4 hours)
         const sessionExpiry = Date.now() + 4 * 60 * 60 * 1000; // 4 hours from now
 
         localStorage.setItem("session_expiry", sessionExpiry.toString());
         localStorage.setItem("session_token", response.accessToken)
+        localStorage.setItem("expiry_time", response.expiresAt)
         localStorage.setItem("tenantId", tenantId);
         localStorage.setItem("name", response.user.crewName);
         localStorage.setItem("Id", response.user.id);
@@ -41,6 +41,8 @@ const Login: React.FC = () => {
         localStorage.setItem("enableFinalSubmit", response.user.isSubmitForViolation)
         localStorage.setItem("menu", JSON.stringify(response.user.menuDetails || []))
         enqueueSnackbar('Login successful!', { variant: 'success' });
+        navigate("/");
+        setLoading(true);
       } else {
         enqueueSnackbar('Login failed. Please try again.', { variant: 'error' });
       }
