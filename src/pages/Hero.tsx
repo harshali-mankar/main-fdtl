@@ -35,43 +35,67 @@ const Hero = () => {
   //   window.open(`${link}?${params.toString()}`, "_blank");
   // };
 
-
-  const handleOpenProject = (link: string) => {
+ const handleOpenProject = (link: string) => {
   const session_token = localStorage.getItem("session_token");
   const tenantId = localStorage.getItem("tenantId");
 
-  if (!session_token) {
+  if (!session_token || !tenantId) {
     alert("Please login first!");
     return;
   }
 
-  // New window open karo
-  const child = window.open(link, "_blank");
+  // Save real token and tenantId in localStorage for the master app to pick up
+  localStorage.setItem("master_session_token", session_token);
+  localStorage.setItem("master_tenantId", tenantId);
 
-  if (!child) {
-    alert("Popup blocked or failed to open");
-    return;
-  }
+  // URL params: send only placeholders
+  const params = new URLSearchParams({
+    session_token: "MASKED_TOKEN",
+    tenantId: "MASKED_TENANT",
+  });
 
-  // Polling to wait until child is ready
-  const interval = setInterval(() => {
-    try {
-      if (child && !child.closed) {
-        // Send message to child
-        child.postMessage(
-          { session_token, tenantId },
-          "http://localhost:5174" // exact child origin
-        );
-        clearInterval(interval);
-      } else {
-        clearInterval(interval);
-      }
-    } catch (err) {
-      // Cross-origin error until child fully loads
-      console.log("Waiting for child window to load...");
-    }
-  }, 200);
+  window.open(`${link}?${params.toString()}`, "_blank");
 };
+
+
+
+
+//   const handleOpenProject = (link: string) => {
+//   const session_token = localStorage.getItem("session_token");
+//   const tenantId = localStorage.getItem("tenantId");
+
+//   if (!session_token) {
+//     alert("Please login first!");
+//     return;
+//   }
+
+//   // New window open karo
+//   const child = window.open(link, "_blank");
+
+//   if (!child) {
+//     alert("Popup blocked or failed to open");
+//     return;
+//   }
+
+//   // Polling to wait until child is ready
+//   const interval = setInterval(() => {
+//     try {
+//       if (child && !child.closed) {
+//         // Send message to child
+//         child.postMessage(
+//           { session_token, tenantId },
+//           "http://localhost:5174" // exact child origin
+//         );
+//         clearInterval(interval);
+//       } else {
+//         clearInterval(interval);
+//       }
+//     } catch (err) {
+//       // Cross-origin error until child fully loads
+//       console.log("Waiting for child window to load...");
+//     }
+//   }, 200);
+// };
 
 
   return (

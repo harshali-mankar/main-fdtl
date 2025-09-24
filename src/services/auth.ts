@@ -1,23 +1,23 @@
+import { getAppConfig } from "../../configLoader";
 
 export const GetLoginCredentials = async (data: any) => {
   try {
-    const response = await fetch(
-      `https://bs3178k0-7103.inc1.devtunnels.ms/api/Login/generate-token`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "TenantId": data.tenantId,
-        },
-        body: JSON.stringify({
-          userId: data.userId,
-          password: data.password,
-        }),
-      }
-    );
+    const { REACT_APP_AUTH_URL, DEFAULT_HEADERS } = getAppConfig();
+
+    const response = await fetch(`${REACT_APP_AUTH_URL}/Login/generate-token`, {
+      method: "POST",
+      headers: {
+        ...DEFAULT_HEADERS,        
+        TenantId: data.tenantId,   
+      },
+      body: JSON.stringify({
+        userId: data.userId,
+        password: data.password,
+      }),
+    });
 
     if (!response.ok) {
-      const errorText = await response.text(); // log raw error
+      const errorText = await response.text();
       throw new Error(`API error ${response.status}: ${errorText}`);
     }
 
@@ -27,5 +27,3 @@ export const GetLoginCredentials = async (data: any) => {
     throw error;
   }
 };
-
-
