@@ -7,10 +7,11 @@ const LogoutButton = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const logout = () => {
-    localStorage.removeItem("Id");
-    localStorage.removeItem("name");
-    localStorage.removeItem("session_expiry");
-    localStorage.removeItem("tenantId");
+    // localStorage.removeItem("Id");
+    // localStorage.removeItem("name");
+    // localStorage.removeItem("session_expiry");
+    // localStorage.removeItem("tenantId");
+    localStorage.clear()
     navigate("/login");
     enqueueSnackbar('Logged Out Succesfully.', { variant: 'success' });
   }

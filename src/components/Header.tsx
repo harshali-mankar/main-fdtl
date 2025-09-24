@@ -2,7 +2,6 @@ import { AppBar, Box, Toolbar, Typography, Avatar, Menu, MenuItem, CardMedia } f
 import { ExitToApp, KeyboardArrowDown } from '@mui/icons-material'
 import { useState, useEffect } from 'react'
 import LogoutButton from './LogoutButton'
-import kraft_nexus from "../assets/demo_small.png"
 
 
 const Header = () => {
@@ -43,7 +42,7 @@ const Header = () => {
           <CardMedia
             component="img"
             height="60"
-            image={kraft_nexus}
+            image={"/kraft_nexus.png"}
             alt="Kraft Nexus"
             sx={{ objectFit: 'contain', padding: '8px' }}
           />
