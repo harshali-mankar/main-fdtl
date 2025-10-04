@@ -10,12 +10,12 @@ const heroPageData = [
     link: "https://dev-flyx-ui.kraftnexus.in/",
     name: "Aero Duty Pro FlyX",
     module:"flyx",
-    desc: "Flyx Dashboard is a centralized platform designed for managing charter flight operations and bookings efficiently. It provides a streamlined interface for handling trip requests, passenger details, flight scheduling, and operator coordination. Built with a user-first design, it ensures quick access to critical aviation workflows."
+    desc: "Automates Flight Duty Time Limitations (FDTL), calculates duty/rest hours, and flags potential violations. It reduces manual work, integrates with crew rosters, and keeps your operations within DGCA regulations—helping prevent fatigue and last-minute changes."
   }, {
-    image: "/aero_duty_pro.png",
+    image: "/crew_trainx.png",
     link: "https://dev-trainx-ui.kraftnexus.in/",
     name: "Crew TrainX",
-    desc: "",
+    desc: "Simplifies training and license management by automating schedules, tracking expirations, and storing documents digitally. It sends real-time alerts, keeps records organized, and provides clear reports—ensuring your crew stays qualified and ready to fly.",
     module:"trainx"
   }, {
     image: "/vims.png",
