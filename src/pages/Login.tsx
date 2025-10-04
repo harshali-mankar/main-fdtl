@@ -19,23 +19,25 @@ const Login: React.FC = () => {
   const handleLogin = async (values: { email: string; password: string; tenantId: string }) => {
     const { email, password, tenantId } = values;
     try {
+      debugger
       const data = {
         tenantId: tenantId,
         userId: email,
         password: password,
+        module:"master"
       }
       const response = await GetLoginCredentials(data)
       if (response.user) {
-        
+
         // Store session in sessionStorage (expires in 4 hours)
         const sessionExpiry = Date.now() + 4 * 60 * 60 * 1000; // 4 hours from now
-
+        localStorage.setItem("userName",email)
         localStorage.setItem("session_expiry", sessionExpiry.toString());
         localStorage.setItem("session_token", response.accessToken)
         localStorage.setItem("expiry_time", response.expiresAt)
         localStorage.setItem("tenantId", tenantId);
-        localStorage.setItem("name", response.user.crewName);
-        localStorage.setItem("Id", response.user.id);
+        localStorage.setItem("name", response.user.crew_Name);
+        localStorage.setItem("Id", response.user.crewId);
         localStorage.setItem("approvalFeature", response.user.approvalFeature)
         localStorage.setItem("operatorTypes", JSON.stringify(response.user.operatorType));
         localStorage.setItem("enableFinalSubmit", response.user.isSubmitForViolation)

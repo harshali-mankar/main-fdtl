@@ -1,5 +1,5 @@
 {
-  "REACT_APP_AUTH_URL": "https://bs3178k0-7103.inc1.devtunnels.ms/api",
+  "REACT_APP_AUTH_URL":  "https://dev-utilities-api.kraftnexus.in/api/",
   "DEFAULT_HEADERS": {
     "Content-Type": "application/json"
   }

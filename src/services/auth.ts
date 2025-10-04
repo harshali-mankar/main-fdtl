@@ -4,16 +4,13 @@ export const GetLoginCredentials = async (data: any) => {
   try {
     const { REACT_APP_AUTH_URL, DEFAULT_HEADERS } = getAppConfig();
 
-    const response = await fetch(`${REACT_APP_AUTH_URL}/Login/generate-token`, {
+    const response = await fetch(`${REACT_APP_AUTH_URL}Login/validate`, {
       method: "POST",
       headers: {
         ...DEFAULT_HEADERS,        
         TenantId: data.tenantId,   
       },
-      body: JSON.stringify({
-        userId: data.userId,
-        password: data.password,
-      }),
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
