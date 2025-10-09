@@ -105,29 +105,29 @@ const AppRoutes = () => {
   //   return () => clearInterval(interval);
   // },[navigate]);
 
-   useEffect(() => {
-    const checkSession = () => {
-      const userId = localStorage.getItem("Id");
-      const expiryTime = localStorage.getItem("expiry_time");
+  //  useEffect(() => {
+  //   const checkSession = () => {
+  //     const userId = localStorage.getItem("Id");
+  //     const expiryTime = localStorage.getItem("expiry_time");
 
-      if (userId && expiryTime) {
-        const expiryMs = new Date(expiryTime).getTime();
-        if (expiryMs > Date.now()) {
-          setIsLoggedIn(true);
-        } else {
-          localStorage.clear();
-          setIsLoggedIn(false);
-        }
-      } else {
-        setIsLoggedIn(false);
-      }
-    };
+  //     if (userId && expiryTime) {
+  //       const expiryMs = new Date(expiryTime).getTime();
+  //       if (expiryMs > Date.now()) {
+  //         setIsLoggedIn(true);
+  //       } else {
+  //         localStorage.clear();
+  //         setIsLoggedIn(false);
+  //       }
+  //     } else {
+  //       setIsLoggedIn(false);
+  //     }
+  //   };
 
-    checkSession();
+  //   checkSession();
 
-    const interval = setInterval(checkSession, 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
+  //   const interval = setInterval(checkSession, 60 * 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   if (isLoggedIn === null) return null;
 // if(loading) return null;
