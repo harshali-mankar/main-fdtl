@@ -20,7 +20,7 @@ const Hero = () => {
   };
 
   const handleOpenProject = (link: string, module: string) => {
-    debugger
+    
     const session_token = localStorage.getItem("session_token");
     const tenantId = localStorage.getItem("tenantId");
     const username = localStorage.getItem("userName");

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import {
   Container,
   TextField,
@@ -11,15 +11,22 @@ import {
 import { GetLoginCredentials } from "../services/auth";
 import { useSnackbar } from "notistack";
 
-const Login: React.FC = () => {
+interface LoginProps {
+  setIsLoggedIn?: (value: boolean) => void;
+}
+
+const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
   const [loading, setLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   const handleLogin = async (values: { email: string; password: string; tenantId: string }) => {
+    
+    setLoading(true);
+
     const { email, password, tenantId } = values;
     try {
-     
+
       const data = {
         tenantId: tenantId,
         userId: email,
@@ -43,12 +50,19 @@ const Login: React.FC = () => {
         localStorage.setItem("enableFinalSubmit", response.user.isSubmitForViolation)
         localStorage.setItem("menu", JSON.stringify(response.user.menuDetails || []))
         enqueueSnackbar('Login successful!', { variant: 'success' });
-        navigate("/");
-        setLoading(true);
+        // window.location.href = "/";
+
+       setIsLoggedIn?.(true);
+        navigate("/", { replace: true });
+        // setLoading(true);
       } else {
         enqueueSnackbar('Login failed. Please try again.', { variant: 'error' });
       }
     } catch (error) {
+       enqueueSnackbar("Login error", { variant: "error" });
+       
+      } finally {
+      setLoading(false);
 
     }
 
